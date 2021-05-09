@@ -12,10 +12,10 @@
 
 ## Usage
 
-- Open a REPL using lein repl once you have entered the project root directory from command line
-- Call the start-app function at the REPL. (REPL will default to rentpath.core namespace)
+- Open a REPL using ```lein repl``` once you have entered the project root directory from command line
+- Call the ```start-app``` function at the REPL. (REPL will default to rentpath.core namespace)
 - This will start all the pieces of the application.
-- Calling stop-app function will stop the event producer and http-kit.
+- Calling ```stop-app``` function will stop the event producer and http-kit.
 - Query it with no parameters to get scores for all the users
 
 ```
@@ -26,7 +26,7 @@ $ curl "http://localhost:9090/scores"
 - Or query it with a user id to get the score of that specific user. The possible user ids are - 5148647, 5148648, 5148649, 5148650, 5148651
 
 ```
-$ curl "http://localhost:9090/scores?id=5148650"
+$ curl "http://localhost:9090/scores/5148650"
 [{"id":5148650,"login":"ReggaePP","score":151}]
 ```
 
