@@ -1,6 +1,6 @@
 # Scoring Service
 
-#Intro
+Intro
 
 - Application is initialized by pulling some (5) userid and user names from github (5 users who signed up right after the username entered in resources/config.edn)
 - The application also initiates 500 events for the above 5 users randomly as an "initial state".
@@ -10,7 +10,7 @@
 - The project is Leiningen based.
 - Configurations are in resources/config.edn
 
-#Usage
+Usage
 
 - Use lein repl once you have entered the project root directory from command line
 - Call the start-app function at the REPL. (REPL will default to rentpath.core namespace)
