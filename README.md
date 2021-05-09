@@ -12,10 +12,10 @@
 
 ## Usage
 
-- Open a REPL using lein repl once you have entered the project root directory from command line
-- Call the start-app function at the REPL. (REPL will default to rentpath.core namespace)
+- Open a REPL using ```lein repl``` once you have entered the project root directory from command line
+- Call the ```start-app``` function at the REPL. (REPL will default to rentpath.core namespace)
 - This will start all the pieces of the application.
-- Calling stop-app function will stop the event producer and http-kit.
+- Calling ```stop-app``` function will stop the event producer and http-kit.
 - Query it with no parameters to get scores for all the users
 
 ```
