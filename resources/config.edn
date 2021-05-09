@@ -1,0 +1,4 @@
+{:github-url "https://api.github.com/"
+ :my-github-user "amitvshah25"
+ :server-port 9090
+ :stop-timeout 1000}
