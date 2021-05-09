@@ -25,7 +25,8 @@
        (vals)
        (map #(reduce score-aggregator {:score 0} %))))
 
-(defn scores [{{id :id} :params :as req}]
+;; defn scores [{{id :id} :params :as req}]
+(defn scores [id]
   (let [events-to-aggr (if (nil? id)
                          @user-events
                          (filter #(= (str (:id %)) id) @user-events))]

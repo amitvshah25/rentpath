@@ -17,7 +17,7 @@
    my-user-id]  
   (let [get-users-url (str github-url "/users")]
      (->> (hc/get get-users-url {:query-params {:since my-user-id :per_page 5}
-                                :as :json})
+                                 :as :json})
           (:body)
           (map #(select-keys % [:id :login])))))
 

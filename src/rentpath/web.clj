@@ -10,7 +10,8 @@
             [rentpath.config :refer [conf]]))
 
 (defroutes all-routes
-  (GET "/scores" [] scores)
+  (GET "/scores" [] (scores nil))
+  (GET "/scores/:id" [id] (scores id))
   (not-found "Page not found"))
 
 (def app (-> all-routes
