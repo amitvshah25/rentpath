@@ -26,7 +26,7 @@ $ curl "http://localhost:9090/scores"
 - Or query it with a user id to get the score of that specific user. The possible user ids are - 5148647, 5148648, 5148649, 5148650, 5148651
 
 ```
-$ curl "http://localhost:9090/scores?id=5148650"
+$ curl "http://localhost:9090/scores/5148650"
 [{"id":5148650,"login":"ReggaePP","score":151}]
 ```
 
