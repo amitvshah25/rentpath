@@ -2,7 +2,7 @@
   (:require [clojure.test :refer :all]
             [rentpath.core :refer :all]
             [rentpath.config :refer [conf]]
-            [rentpath.github-users :refer [some-github-users]]            
+            [rentpath.github-users :refer [some-github-users]]
             [clj-http.client :as hc]))
 
 (defn rentpath-fixture [rentpath-tests]
@@ -32,7 +32,6 @@
     (let [local-url "http://localhost:"
           local-url (str local-url (:server-port conf))
           local-url (str local-url "/scores/5148647")] ;Checking for a given user. 
-      (is (>  (-> (make-request-and-parse-body local-url)
-                  (first)
+      (is (>=  (-> (make-request-and-parse-body local-url)
                   (:score))
               0)))))

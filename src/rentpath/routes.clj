@@ -1,34 +1,19 @@
 (ns rentpath.routes
-  (:require [rentpath.event-source :refer [user-events]]
+  (:require [rentpath.event-source :refer [user-scores]]
+            [rentpath.github-users :refer [some-github-users]]
             [ring.util.response :refer [response]]))
 
-(def event-points [{:type "PushEvent" :points 5}
-                   {:type "PullRequestReviewCommentEvent" :points 4}
-                   {:type "WatchEvent" :points 3}
-                   {:type "CreateEvent" :points 2}])
+(defn user->score [accum {id :id :as user}]
+  (conj accum (assoc user :score (get @user-scores (keyword (str id))))))
 
-(defn event->score [event-type]
-  (if-let [points (->> event-points
-                       (filter #(= event-type (:type %)))
-                       (first)
-                       (:points))]
-    points
-    1)) ;1 for all other events
-
-(defn score-aggregator [{score :score :as result}
-                        {type :type id :id login :login :as event}]
-  {:id id :login login :score (+ score (event->score type))})
-
-(defn aggr-all-scores [all-events]
-  (->> all-events
-       (group-by :id)
-       (vals)
-       (map #(reduce score-aggregator {:score 0} %))))
-
-(defn scores [id]
-  (let [events-to-aggr (if (nil? id)
-                         @user-events
-                         (filter #(= (str (:id %)) id) @user-events))]
-    (-> events-to-aggr
-        (aggr-all-scores)
-        (response))))
+(defn scores
+  ([]
+   (->> some-github-users
+        (reduce user->score [])
+        (response)))
+  ([id]   
+   (as-> some-github-users $
+     (filter #(= (str (:id %)) id) $)
+     (first $)
+     (assoc $ :score (get @user-scores (keyword (str id))))
+     (response $))))
