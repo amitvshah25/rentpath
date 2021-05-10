@@ -20,7 +20,7 @@
 - Calling ```(stop-app)``` function will stop the event producer and http-kit.
 - Query it with no parameters to get scores for all the users
 - For packaged application - 
-  1. To package the application, run ```lein uberjar``` which will build the a production ready jar file under target directory of the project.
+  1. To package the application, run ```lein uberjar``` which will build the a production ready jar file under target directory of the project.
   2. To run the packaged jar file, run ```java -jar rentpath-1.0-standalone.jar``` from target/uberjar directory.
 
 ```
