@@ -11,8 +11,6 @@
 - Rest endpoints are exposed using http-kit/ring/compojure.
 - Application runs on port 9090, and can be altered from the configuration file in resources/config.edn.
 - The unit tests can be run using lein test
-- To package the application, run ```lein uberjar``` which will build the a production ready jar file under target directory of the project.
-- To run the packaged jar file, run ```java -jar rentpath-1.0-standalone.jar``` from target/uberjar directory.
 
 ## Usage
 
@@ -21,6 +19,9 @@
 - This will start all the pieces of the application.
 - Calling ```(stop-app)``` function will stop the event producer and http-kit.
 - Query it with no parameters to get scores for all the users
+- For packaged application - 
+  1. To package the application, run ```lein uberjar``` which will build the a production ready jar file under target directory of the project.
+  2. To run the packaged jar file, run ```java -jar rentpath-1.0-standalone.jar``` from target/uberjar directory.
 
 ```
 $ curl "http://localhost:9090/scores"
