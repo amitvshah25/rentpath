@@ -2,7 +2,7 @@
 
 ## Intro
 
-- Application is initialized by pulling some (5) userids and user names from github (5 users who signed up right after the username entered in resources/config.edn)
+- Application is initialized by pulling 5 userids who signed up right after the username entered in resources/config.edn
 - There is an event stream producer which puts events on a sliding buffered channel.
 - There is an event stream consumer which 
   1. Takes events from the channel
@@ -30,6 +30,12 @@ $ curl "http://localhost:9090/scores"
 ```
 $ curl "http://localhost:9090/scores/5148650"
 {"id":5148650,"login":"ReggaePP","score":151}
+```
+- Querying with an unknown user id will return an error message.
+
+```
+$ curl "http://localhost:9090/scores/1111"
+{"error":"User ID not found"}
 ```
 
 ## Package the application

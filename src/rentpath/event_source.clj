@@ -41,7 +41,7 @@
              (recur)))
   :stop (close! event-channel)) ;close the channel when application is shutdown
 
-(defstate event-consumer
+(defstate event-consumer!
   :start (go-loop []
            (Thread/sleep 1000)
            (when-let [e (<! event-channel)]

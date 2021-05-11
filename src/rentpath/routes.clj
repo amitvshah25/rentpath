@@ -11,9 +11,9 @@
    (->> some-github-users
         (reduce user->score [])
         (response)))
-  ([id]   
-   (as-> some-github-users $
-     (filter #(= (str (:id %)) id) $)
-     (first $)
-     (assoc $ :score (get @user-scores (keyword (str id))))
-     (response $))))
+  ([id]
+   (if-let [u (->> some-github-users
+                (filter #(= (str (:id %)) id))
+                (first))]
+     (response (assoc u :score (get @user-scores (keyword (str id)))))
+     (response {:error "User ID not found"}))))

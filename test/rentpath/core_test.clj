@@ -20,18 +20,21 @@
   (->  (hc/get url {:as :json})
        (:body)))
 
+(def local-url (str "http://localhost:"
+                    (:server-port conf)
+                    "/scores"))
+
 (deftest scores-all-users
   (testing "Scores for all users"
-    (let [local-url "http://localhost:"
-          local-url (str local-url (:server-port conf))
-          local-url (str local-url "/scores")]
-      (is (= (count (make-request-and-parse-body local-url)) 5))))) ;We should get 5 scores for 5 users here.
+    (is (= (count (make-request-and-parse-body local-url)) 5)))) ;We should get 5 scores for 5 users here.
 
 (deftest scores-by-user
   (testing "Scores for one user"
-    (let [local-url "http://localhost:"
-          local-url (str local-url (:server-port conf))
-          local-url (str local-url "/scores/5148647")] ;Checking for a given user. 
-      (is (>=  (-> (make-request-and-parse-body local-url)
+    (let [valid-usr (str local-url "/5148647")
+          invalid-usr (str local-url "/111111")]
+      (is (>=  (-> (make-request-and-parse-body valid-usr)
                   (:score))
-              0)))))
+              0))
+      (is (contains?
+           (make-request-and-parse-body invalid-usr)
+           :error)))))
